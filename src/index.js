@@ -12,7 +12,6 @@ console.log("Hi coyote, let's have some JavaScript fun!")
 // Monthly fee is changed based on the number of athletes that are signed up for the coach.
 // Athletes can attend events and teams
 
-
 // Coaches homepage should have the following features:
 // Coaches profile has a list of athletes that are signed up for the coach.
 // Coaches profile has a list of training programs that are created by the coach.
@@ -31,6 +30,49 @@ console.log("Hi coyote, let's have some JavaScript fun!")
 // Athletes can also vote for the best coach.
 // Athletes can also buy training programs from coaches.
 
-const user = require('./user')
+const emre = {
+  username: 'emre',
+  status: 'athlete',
+  age: 27,
+  weight: 80,
+  height: 180,
+  coach: '',
 
-console.log('hello world')
+  subscribe(coach) {
+    this.coach = coach.username
+    coach.athletes.push(this.username)
+  },
+}
+
+const mustafa = {
+  username: 'mustafa',
+  status: 'athlete',
+  age: 42,
+  weight: 93,
+  height: 187,
+  coach: '',
+  subscribe(coach) {
+    this.coach = coach.username
+    coach.athletes.push(this.username)
+  },
+}
+
+const numan = {
+  username: 'numan',
+  status: 'coach',
+  age: 30,
+  weight: 80,
+  height: 180,
+  athletes: [],
+}
+
+console.log(`emre has a name of ${emre.username} and he is ${emre.status}`)
+
+emre.subscribe(numan)
+
+console.log(`emre has a coach of ${emre.coach}`)
+console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+
+mustafa.subscribe(numan)
+console.log(`After mustafas subscribtion numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+console.log('numans athletes', numan.athletes)
