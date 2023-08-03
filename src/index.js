@@ -76,3 +76,5 @@ console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 mustafa.subscribe(numan)
 console.log(`After mustafas subscribtion numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 console.log('numans athletes', numan.athletes)
+
+// Testing for slack
