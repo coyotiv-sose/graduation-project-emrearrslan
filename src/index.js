@@ -29,7 +29,9 @@ console.log("Hi coyote, let's have some JavaScript fun!")
 // Athletes can also create messages and coaches can reply to them.
 // Athletes can also vote for the best coach.
 // Athletes can also buy training programs from coaches.
+// TODO: Arrange properties
 
+/*
 const emre = {
   username: 'emre',
   status: 'athlete',
@@ -76,5 +78,31 @@ console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 mustafa.subscribe(numan)
 console.log(`After mustafas subscribtion numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 console.log('numans athletes', numan.athletes)
+*/
+const User = require('./user')
+const Course = require('./course')
 
-// Testing for slack
+const emre = new User('emre', 'athlete', 27, 80, 180)
+const mustafa = new User('mustafa', 'athlete', 42, 93, 187)
+const thomas = new User('thomas', 'athlete', 21, 70, 181)
+const numan = new User('numan', 'coach', 30, 80, 180)
+
+const course1 = new Course('course1', '01.01.2020', 100)
+const course2 = new Course('course2', '01.02.2020', 200)
+const course3 = new Course('course3', '01.03.2020', 300)
+
+console.log(`emre has a name of ${emre.username} and he is ${emre.status}`)
+emre.subscribe(numan)
+console.log(`emre has a coach of ${emre.coach}`)
+console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+
+emre.purchase(course1)
+console.log(`emre has ${emre.courses.length} courses: ${emre.courses}`)
+console.log(`course1 has ${course1.participants.length} participants: ${course1.participants}`)
+
+emre.unsubscribe(numan)
+console.log(`emre has a coach of after unsubscribe ${emre.coach}`)
+console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+
+emre.subscribe(mustafa)
+console.log(`emre has a coach of ${emre.coach}`)
