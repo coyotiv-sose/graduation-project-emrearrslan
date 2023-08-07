@@ -82,6 +82,9 @@ console.log('numans athletes', numan.athletes)
 const User = require('./user')
 const Course = require('./course')
 
+// Terminal color
+const colors = require('colors')
+
 const emre = new User('emre', 'athlete', 27, 80, 180)
 const mustafa = new User('mustafa', 'athlete', 42, 93, 187)
 const thomas = new User('thomas', 'athlete', 21, 70, 181)
@@ -106,3 +109,7 @@ console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 
 emre.subscribe(mustafa)
 console.log(`emre has a coach of ${emre.coach}`)
+
+console.log('hello'.green)
+console.log(`emre does not have a coach ${emre.coach === '' ? 'true'.blue : 'false'.red}`)
+console.log(`emre has a coach numan ${emre.coach === 'numan' ? 'true'.blue : 'false'.red}`)
