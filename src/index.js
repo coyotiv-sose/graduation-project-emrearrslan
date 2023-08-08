@@ -81,35 +81,52 @@ console.log('numans athletes', numan.athletes)
 */
 const User = require('./user')
 const Course = require('./course')
+const axios = require('axios')
+
+axios.defaults.baseURL = 'http://localhost:3000'
 
 // Terminal color
 const colors = require('colors')
 
-const emre = new User('emre', 'athlete', 27, 80, 180)
-const mustafa = new User('mustafa', 'athlete', 42, 93, 187)
-const thomas = new User('thomas', 'athlete', 21, 70, 181)
-const numan = new User('numan', 'coach', 30, 80, 180)
+async function main() {
+  // create a user with axios call to user API
+  const emre = await axios.post('/users', {
+    name: 'emre',
+    status: 'athlete',
+    age: 27,
+    weight: 80,
+    height: 180,
+  })
 
-const course1 = new Course('course1', '01.01.2020', 100)
-const course2 = new Course('course2', '01.02.2020', 200)
-const course3 = new Course('course3', '01.03.2020', 300)
+  console.log('emre: ', emre.data)
+}
+main()
 
-console.log(`emre has a name of ${emre.username} and he is ${emre.status}`)
-emre.subscribe(numan)
-console.log(`emre has a coach of ${emre.coach}`)
-console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+// const emre = new User('emre', 'athlete', 27, 80, 180)
+// const mustafa = new User('mustafa', 'athlete', 42, 93, 187)
+// const thomas = new User('thomas', 'athlete', 21, 70, 181)
+// const numan = new User('numan', 'coach', 30, 80, 180)
 
-emre.purchase(course1)
-console.log(`emre has ${emre.courses.length} courses: ${emre.courses}`)
-console.log(`course1 has ${course1.participants.length} participants: ${course1.participants}`)
+// const course1 = new Course('course1', '01.01.2020', 100)
+// const course2 = new Course('course2', '01.02.2020', 200)
+// const course3 = new Course('course3', '01.03.2020', 300)
 
-emre.unsubscribe(numan)
-console.log(`emre has a coach of after unsubscribe ${emre.coach}`)
-console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+// console.log(`emre has a name of ${emre.username} and he is ${emre.status}`)
+// emre.subscribe(numan)
+// console.log(`emre has a coach of ${emre.coach}`)
+// console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
 
-emre.subscribe(mustafa)
-console.log(`emre has a coach of ${emre.coach}`)
+// emre.purchase(course1)
+// console.log(`emre has ${emre.courses.length} courses: ${emre.courses}`)
+// console.log(`course1 has ${course1.participants.length} participants: ${course1.participants}`)
 
-console.log('hello'.green)
-console.log(`emre does not have a coach ${emre.coach === '' ? 'true'.blue : 'false'.red}`)
-console.log(`emre has a coach numan ${emre.coach === 'numan' ? 'true'.blue : 'false'.red}`)
+// emre.unsubscribe(numan)
+// console.log(`emre has a coach of after unsubscribe ${emre.coach}`)
+// console.log(`numan has ${numan.athletes.length} athletes: ${numan.athletes}`)
+
+// emre.subscribe(mustafa)
+// console.log(`emre has a coach of ${emre.coach}`)
+
+// console.log('hello'.green)
+// console.log(`emre does not have a coach ${emre.coach === '' ? 'true'.blue : 'false'.red}`)
+// console.log(`emre has a coach numan ${emre.coach === 'numan' ? 'true'.blue : 'false'.red}`)
