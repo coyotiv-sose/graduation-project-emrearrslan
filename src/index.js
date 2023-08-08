@@ -97,8 +97,26 @@ async function main() {
     weight: 80,
     height: 180,
   })
-
+  const mustafa = await axios.post('/users', {
+    name: 'mustafa',
+    status: 'athlete',
+    age: 42,
+    weight: 93,
+    height: 187,
+  })
+  const numan = await axios.post('/users', {
+    name: 'numan',
+    status: 'coach',
+    age: 30,
+    weight: 80,
+    height: 180,
+  })
   console.log('emre: ', emre.data)
+
+  await axios.post('users/subscriptions', {
+    athlete: emre.data.name,
+    coach: numan.data.name,
+  })
 }
 main()
 
