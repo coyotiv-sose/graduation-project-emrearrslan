@@ -25,6 +25,12 @@ class User {
     this.coach = ''
     coach.athletes = coach.athletes.filter(athlete => athlete !== this.name)
   }
+  static create({ name, status, age, weight, height }) {
+    const user = new User(name, status, age, weight, height)
+    User.list.push(user)
+    return user
+  }
+  static list = []
 }
 
 module.exports = User
