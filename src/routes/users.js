@@ -18,10 +18,16 @@ router.post('/', function (req, res, next) {
   })
   res.send(newUser)
 })
-router.post('/subscriptions', function (req, res, next) {
-  const athlete = User.list.find(user => user.name === req.body.athlete)
+router.post('/:id/subscriptions', function (req, res, next) {
+  const athlete = User.list.find(user => user.name === req.params.id)
   const coach = User.list.find(user => user.name === req.body.coach)
   athlete.subscribe(coach)
+  res.send(athlete)
+})
+router.delete('/:id/subscriptions/:coachId', function (req, res, next) {
+  const athlete = User.list.find(user => user.name === req.params.id)
+  const coach = User.list.find(user => user.name === req.params.coachId)
+  athlete.unsubscribe(coach)
   res.send(athlete)
 })
 module.exports = router

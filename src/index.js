@@ -113,10 +113,16 @@ async function main() {
   })
   console.log('emre: ', emre.data)
 
-  await axios.post('users/subscriptions', {
-    athlete: emre.data.name,
+  await axios.post('users/emre/subscriptions', {
     coach: numan.data.name,
   })
+  const allUsersInitial = await axios.get('/users')
+  console.log('all users: ', allUsersInitial.data)
+
+  await axios.delete('users/emre/subscriptions/numan')
+
+  const allUsersCurrent = await axios.get('/users')
+  console.log('all users: ', allUsersCurrent.data)
 }
 main()
 
