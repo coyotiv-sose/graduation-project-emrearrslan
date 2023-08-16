@@ -16,7 +16,8 @@ router.get('/', async function (req, res, next) {
 // })
 router.post('/', async function (req, res, next) {
   const { name, date, price, owner } = req.body
-  const course = await Course.create({ name, date, price, owner })
+  const user = await User.findById(owner)
+  const course = await user.createCourse(name, date, price)
   res.send(course)
 })
 module.exports = router

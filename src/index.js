@@ -62,41 +62,35 @@ async function main() {
     height: 180,
   })
   const course1 = await axios.post('/courses', {
-    owner: numan.data.name,
+    owner: numan.data._id,
     name: 'course1',
     date: '01.01.2020',
     price: 100,
   })
   const course2 = await axios.post('/courses', {
-    owner: numan.data.name,
+    owner: numan.data._id,
     name: 'course2',
     date: '01.02.2020',
     price: 200,
   })
   const course3 = await axios.post('/courses', {
-    owner: numan.data.name,
+    owner: numan.data._id,
     name: 'course3',
     date: '01.03.2020',
     price: 300,
   })
 
-  console.log('emre: ', emre.data)
   // emre subscribe to numan
-  await axios.post(`/users/${emre.data.name}/subscriptions`, {
-    name: numan.data.name,
+  await axios.post(`/users/${emre.data._id}/subscriptions`, {
+    coach: numan.data._id,
   })
-  const allUsersInitial = await axios.get('/users')
-  console.log('all users: ', allUsersInitial.data)
+
   // await axios.delete('users/emre/subscriptions/numan')
 
-  // const allUsersCurrent = await axios.get('/users')
-  // console.log('all users: ', allUsersCurrent.data)
   /*
   await axios.post('users/emre/purchases', {
     course: course1.data.name,
   })
-  const allUsersAfterPurchase = await axios.get('/users')
-  console.log('all users: ', allUsersAfterPurchase.data)
 */
 }
 

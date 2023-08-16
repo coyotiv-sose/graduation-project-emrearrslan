@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
-
+const autopopulate = require('mongoose-autopopulate')
 // Create userSchema variable with the following properties:
 const userSchema = new mongoose.Schema({
-  owner: String,
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', autopopulate: true },
   name: String,
   date: Date,
   price: Number,
-  participants: [],
+  participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
 })
 // Create a Course class with the following properties:
 class Course {
@@ -14,5 +14,5 @@ class Course {
 }
 
 userSchema.loadClass(Course)
-
+userSchema.plugin(autopopulate)
 module.exports = mongoose.model('Course', userSchema)
