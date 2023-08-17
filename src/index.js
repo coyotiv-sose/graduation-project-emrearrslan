@@ -32,11 +32,9 @@
 const User = require('./models/user')
 const Course = require('./models/course')
 const axios = require('axios')
+const colors = require('colors')
 
 axios.defaults.baseURL = 'http://localhost:3000'
-
-// Terminal color
-const colors = require('colors')
 
 async function main() {
   // create users and courses with axios call to users API
@@ -84,8 +82,10 @@ async function main() {
   await axios.post(`/users/${emre.data._id}/subscriptions`, {
     coach: numan.data._id,
   })
-
-  // await axios.delete('users/emre/subscriptions/numan')
+  await axios.post(`/users/${mustafa.data._id}/subscriptions`, {
+    coach: numan.data._id,
+  })
+  await axios.delete(`users/${emre.data._id}/subscriptions/${numan.data._id}`)
 
   /*
   await axios.post('users/emre/purchases', {

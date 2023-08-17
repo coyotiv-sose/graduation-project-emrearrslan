@@ -28,8 +28,8 @@ router.post('/:id/subscriptions', async function (req, res, next) {
 })
 // create a unsubscription route handler for a user
 router.delete('/:id/subscriptions/:coachId', async function (req, res, next) {
-  const athlete = await User.findOne(user => user.name === req.params.id)
-  const coach = User.findOne(user => user.name === req.params.coachId)
+  const athlete = await User.findById(req.params.id)
+  const coach = await User.findById(req.params.coachId)
   await athlete.unsubscribe(coach)
   res.send(athlete)
 })

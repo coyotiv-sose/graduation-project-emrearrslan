@@ -39,10 +39,12 @@ class User {
 
   // create async unsubscribe method to unsubscribe athlete from coach
   async unsubscribe(coach) {
-    this.coach = ''
-    coach.athletes = coach.athletes.findOne({ name: coachName, status: 'coach' })
+    this.coach = null
+    // coach.athletes = coach.athletes.filter(athlete => athlete !== this)
+    coach.athletes.pull(this)
     await this.save()
     await coach.save()
+    return this
   }
 
   // purchase(course) {
@@ -51,12 +53,12 @@ class User {
   // }
 
   // create async purchase method to purchase course
-  async purchase(course) {
-    this.courses.push(course.name)
-    course.participants.push(this.name)
-    await this.save()
-    await course.save()
-  }
+  // async purchase(course) {
+  //   this.courses.push(course.name)
+  //   course.participants.push(this.name)
+  //   await this.save()
+  //   await course.save()
+  // }
 
   // create refund method to refund course
 
