@@ -87,11 +87,13 @@ async function main() {
   })
   await axios.delete(`users/${emre.data._id}/subscriptions/${numan.data._id}`)
 
-  /*
-  await axios.post('users/emre/purchases', {
-    course: course1.data.name,
+  // await axios.post('users/emre/purchases', {
+  //   course: course1.data.name,
+  // })
+  await axios.post(`users/${emre.data._id}/purchases`, {
+    course: course1.data._id,
   })
-*/
+  await axios.delete(`users/${emre.data._id}/purchases/${course1.data._id}`)
 }
 
 main()

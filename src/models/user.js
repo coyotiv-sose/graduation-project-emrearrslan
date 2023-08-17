@@ -51,6 +51,13 @@ class User {
   //   this.courses.push(course.name)
   //   course.participants.push(this.name)
   // }
+  async purchase(course) {
+    this.courses.push(course)
+    course.participants.push(this)
+    await this.save()
+    await course.save()
+    return this
+  }
 
   // create async purchase method to purchase course
   // async purchase(course) {
@@ -61,6 +68,14 @@ class User {
   // }
 
   // create refund method to refund course
+
+  async refund(course) {
+    this.courses.pull(course)
+    course.participants.pull(this)
+    await this.save()
+    await course.save()
+    return this
+  }
 
   // create async createCourse method to create course
   async createCourse(name, date, price) {

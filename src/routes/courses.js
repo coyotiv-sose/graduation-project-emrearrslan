@@ -5,7 +5,7 @@ const User = require('../models/user')
 
 // create a route handler for getting course list
 router.get('/', async function (req, res, next) {
-  res.send(await Course.find({ owner: req.body.owner }))
+  res.send(await Course.find())
 })
 //   // find user
 //   const user = User.list.find(user => user.name === req.body.owner)

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
-
+const Course = require('../models/course')
 // create a route handler for getting user list
 router.get('/', async function (req, res, next) {
   res.send(await User.find())
@@ -35,15 +35,15 @@ router.delete('/:id/subscriptions/:coachId', async function (req, res, next) {
 })
 // create a purchase route handler for a user
 router.post('/:id/purchases', async function (req, res, next) {
-  const athlete = await User.findOne(user => user.name === req.params.id)
-  const course = await User.findOne(user => user.name === req.body.course)
+  const athlete = await User.findById(req.params.id)
+  const course = await Course.findById(req.body.course)
   await athlete.purchase(course)
   res.send(athlete)
 })
 // create a refund route handler for a user
 router.delete('/:id/purchases/:courseId', async function (req, res, next) {
-  const athlete = await User.findOne(user => user.name === req.params.id)
-  const course = await User.findOne(user => user.name === req.params.courseId)
+  const athlete = await User.findById(req.params.id)
+  const course = await Course.findById(req.params.courseId)
   await athlete.refund(course)
   res.send(athlete)
 })
