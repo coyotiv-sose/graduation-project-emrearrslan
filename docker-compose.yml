@@ -2,16 +2,16 @@ services:
   api:
     image: api
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
     env_file:
-      - .env
+      - backend/.env
     environment:
       - APP_NAME=api
     volumes:
-      - ./src:/app/src
+      - ./backend/src:/app/src
     depends_on:
       - mongo
 
@@ -21,3 +21,16 @@ services:
       - '27017:27017'
     volumes:
       - ./data/db:/data/db
+  frontend:
+    image: frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - '5173:5173'
+    environment:
+      - APP_NAME=frontend
+    volumes:
+      - ./frontend/src:/app/src
+    depends_on:
+      - api
