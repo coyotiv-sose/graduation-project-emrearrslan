@@ -3,6 +3,8 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const cors = require('cors')
+
 require('dotenv').config()
 require('./database-connection')
 
@@ -11,6 +13,8 @@ const usersRouter = require('./routes/users')
 const coursesRouter = require('./routes/courses')
 
 const app = express()
+
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
